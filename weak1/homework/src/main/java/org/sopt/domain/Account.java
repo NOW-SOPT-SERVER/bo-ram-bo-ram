@@ -1,19 +1,19 @@
 package org.sopt.domain;
 
+import lombok.Generated;
 import lombok.Getter;
 
-@Getter
+
 public class Account extends Bank{
-    private Long id;
+
     private String accountNumber;
     private double balance;
     private String password;
 
-    public Account(Long id, String accountNumber, double balance, String password) {
-        this.id = id;
+    public Account(String accountNumber, String password) {
         this.accountNumber = accountNumber;
-        this.balance = balance;
         this.password = password;
+        this.balance =0;
     }
 
     //입금
@@ -40,5 +40,9 @@ public class Account extends Bank{
     //비밀번호 인증
     public boolean authenticate(String password) {
         return this.password.equals(password);
+    }
+
+    public String getAccountNumber() {
+        return accountNumber;
     }
 }

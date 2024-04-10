@@ -40,10 +40,7 @@ public class BankView {
                     // 입금 기능
                     break;
                 case 4:
-                    // 출금 기능
-                    break;
-                case 5:
-                    // 이체 기능
+                    withdraw(scanner);
                     break;
                 case 6:
                     // 잔액 조회 기능
@@ -61,15 +58,34 @@ public class BankView {
         System.out.print("고객 이름을 입력하세요: ");
         String customerName = scanner.next();
 
-        customerController.createCustomer(customerName);
+        System.out.print("인증비밀번호를 입력하세요: ");
+        String customerPassword = scanner.next();
+
+        // 생성된 고객을 BankController에 추가
+        bankController.addCustomer(customerController.createCustomer(customerName,customerPassword));
     }
     private void createAccount(Scanner scanner) {
         System.out.print("고객 이름을 입력하세요: ");
         String customerName = scanner.next();
-        System.out.print("계좌 번호를 입력하세요: ");
+
+        System.out.print("고객 비밀번호를 입력하세요: ");
+        String customerPassword = scanner.next();
+
+        System.out.print("10자리의 계좌 번호를 숫자만 입력하세요: ");
         String accountNumber = scanner.next();
 
+        System.out.print("4자리 비밀번호를 입력하세요: ");
+        String password = scanner.next();
 
-        customerController.createCustomer(customerName);
+        bankController.createAccount(customerName,customerPassword,accountNumber,password);
+    }
+    private void withdraw(Scanner scanner){
+        System.out.print("고객 이름을 입력하세요: ");
+        String customerName = scanner.next();
+
+        System.out.print("10자리의 계좌 번호를 숫자만 입력하세요: ");
+        String accountNumber = scanner.next();
+
+        bankController.withdraw(customerName,accountNumber);
     }
 }
