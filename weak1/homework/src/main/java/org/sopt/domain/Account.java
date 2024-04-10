@@ -31,13 +31,14 @@ public class Account extends Bank{
         return false;
     }
 
-
-    //비밀번호 인증
-    public boolean authenticate(String password) {
-        return this.password.equals(password);
-    }
-
     public String getAccountNumber() {
         return accountNumber;
+    }
+
+    public double getBalance() {
+        return balance;
+    }
+    public String getPassword() {
+        return password;
     }
 }

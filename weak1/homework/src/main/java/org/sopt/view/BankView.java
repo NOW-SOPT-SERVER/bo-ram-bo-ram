@@ -43,7 +43,7 @@ public class BankView {
                     withdraw(scanner);
                     break;
                 case 6:
-                    // 잔액 조회 기능
+                    getBalance(scanner);
                     break;
                 case 7:
                     System.out.println("프로그램을 종료합니다.");
@@ -80,29 +80,39 @@ public class BankView {
         bankController.createAccount(customerName,customerPassword,accountNumber,password);
     }
     private void withdraw(Scanner scanner){
-        System.out.print("고객 이름을 입력하세요: ");
-        String customerName = scanner.next();
-
         System.out.print("10자리의 계좌 번호를 숫자만 입력하세요: ");
         String accountNumber = scanner.next();
+
+        System.out.print("계좌 4자리 비밀번호를 입력하세요: ");
+        String accountPassword = scanner.next();
 
         System.out.print("출금할 금액을 입력하세요: ");
         double accountAmount = Double.parseDouble(scanner.next());
 
-        bankController.withdraw(customerName,accountNumber,accountAmount);
+        bankController.withdraw(accountNumber,accountPassword, accountAmount);
     }
 
     private void deposit(Scanner scanner){
-        System.out.print("고객 이름을 입력하세요: ");
-        String customerName = scanner.next();
-
         System.out.print("10자리의 계좌 번호를 숫자만 입력하세요: ");
         String accountNumber = scanner.next();
+
+        System.out.print("계좌 4자리 비밀번호를 입력하세요: ");
+        String accountPassword = scanner.next();
 
         System.out.print("입금할 금액을 입력하세요: ");
         double accountAmount = Double.parseDouble(scanner.next());
 
 
-        bankController.deposit(customerName,accountNumber,accountAmount);
+        bankController.deposit(accountNumber,accountPassword, accountAmount);
+    }
+
+    private void getBalance(Scanner scanner){
+        System.out.print("10자리의 계좌 번호를 숫자만 입력하세요: ");
+        String accountNumber = scanner.next();
+
+        System.out.print("계좌 4자리 비밀번호를 입력하세요: ");
+        String accountPassword = scanner.next();
+
+        bankController.getBalance(accountNumber,accountPassword);
     }
 }

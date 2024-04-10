@@ -23,26 +23,6 @@ public class BankController {
         customers.add(customer);
     }
 
-    // 비밀번호로 고객을 찾는 메서드
-    private Customer findCustomerByPassword(String customerName, String customerPassword) {
-        for (Customer customer : customers) {
-            if (customer.getName().equals(customerName) && customer.getPassword().equals(customerPassword)) {
-                return customer;
-            }
-        }
-        return null;
-    }
-
-    // 계좌로 고객을 찾는 메서드
-    private Account findCustomerByAccount(String accountNumber) {
-        for (Account account : accounts) {
-            if (account.getAccountNumber().equals(accountNumber)) {
-                return account ;
-            }
-        }
-        return null;
-    }
-
     // 계좌를 생성하는 메서드
     public Account createAccount(String customerName, String customerPassword, String accountNumber, String password) {
         // 고객 찾기
@@ -57,12 +37,48 @@ public class BankController {
             return null;
         }
     }
+    // 고객명으로 고객을 반환하는 메서드
+    private Customer findCustomer(String customerName) {
+        for (Customer customer : customers) {
+            if (customer.getName().equals(customerName) ) {
+                return customer;
+            }
+        }
+        return null;
+    }
+
+    // 고객명과 비밀번호로 고객을 반환하는 메서드
+    private Customer findCustomerByPassword(String customerName, String customerPassword) {
+        for (Customer customer : customers) {
+            if (customer.getName().equals(customerName) && customer.getPassword().equals(customerPassword)) {
+                return customer;
+            }
+        }
+        return null;
+    }
+
+    // 계좌번호로 일치하는 계좌를 반환하는 메소드
+    public Account findAccountByAccountNumber(String accountNumber,String accountPassword) {
+
+        for (Account account : accounts) {
+            if (account.getAccountNumber().equals(accountNumber) && account.getPassword().equals(accountPassword)) {
+                return account;
+            }
+        }
+
+        System.out.println("입력한 정보 해당하는 계좌를 찾을 수 없습니다.");
+        return null;
+    }
+
+
+
+
     // 입금 기능 구현
-    public void deposit (String customerName, String accountNumber,double amount){
-        // 이름으로 고객 찾기
-        Account account = findCustomerByAccount(customerName);
+    public void deposit (String accountNumber,String accountPassword, double amount){
+        // 계좌번호로 계좌찾기
+        Account account = findAccountByAccountNumber(accountNumber,accountPassword);
         if (account == null) {
-            System.out.println("고객 혹은 계좌를 찾을 수 없습니다.");
+            System.out.println("계좌를 찾을 수 없습니다.");
             return;
         }
 
@@ -74,11 +90,11 @@ public class BankController {
     }
 
     // 출금 기능 구현
-    public void withdraw (String customerName, String accountNumber,double amount){
-        // 이름으로 고객 찾기
-        Account account = findCustomerByAccount(customerName);
+    public void withdraw (String accountNumber,String accountPassword,double amount){
+        // 계좌번호로 계좌 찾기
+        Account account = findAccountByAccountNumber(accountNumber,accountPassword);
         if (account == null) {
-            System.out.println("고객 혹은 계좌를 찾을 수 없습니다.");
+            System.out.println("계좌를 찾을 수 없습니다.");
             return;
         }
 
@@ -89,5 +105,18 @@ public class BankController {
         } else {
             System.out.println("잔액이 부족합니다.");
         }
+    }
+
+    //잔액 확인 기능 구현
+    public void getBalance(String accountNumber,String accountPassword){
+        // 계좌번호로 계좌찾기
+        Account account = findAccountByAccountNumber(accountNumber,accountPassword);
+        if (account == null) {
+            System.out.println("고객 혹은 계좌를 찾을 수 없습니다.");
+            return;
+        }
+
+        // 잔액 조회
+        System.out.println("계좌 잔액: " + account.getBalance() + "원");
     }
 }
