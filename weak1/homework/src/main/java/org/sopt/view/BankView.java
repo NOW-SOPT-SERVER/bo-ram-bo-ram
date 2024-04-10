@@ -1,14 +1,17 @@
 package org.sopt.view;
 
 import org.sopt.controller.BankController;
+import org.sopt.controller.CustomerController;
 
 import java.util.Scanner;
 
 public class BankView {
-    private BankController controller;
+    private BankController bankController;
+    private CustomerController customerController;
 
-    public BankView(BankController controller) {
-        this.controller = controller;
+    public BankView(BankController controller, CustomerController customerController) {
+        this.bankController = controller;
+        this.customerController = customerController;
     }
 
     public void run() {
@@ -28,10 +31,10 @@ public class BankView {
 
             switch (choice) {
                 case 1:
-                    //고객 생성 기능
+                    createCustomer(scanner);
                     break;
                 case 2:
-                    //계좌 생성
+                    createAccount(scanner);
                     break;
                 case 3:
                     // 입금 기능
@@ -52,5 +55,21 @@ public class BankView {
                     System.out.println("잘못된 선택입니다.");
             }
         }
+    }
+
+    private void createCustomer(Scanner scanner) {
+        System.out.print("고객 이름을 입력하세요: ");
+        String customerName = scanner.next();
+
+        customerController.createCustomer(customerName);
+    }
+    private void createAccount(Scanner scanner) {
+        System.out.print("고객 이름을 입력하세요: ");
+        String customerName = scanner.next();
+        System.out.print("계좌 번호를 입력하세요: ");
+        String accountNumber = scanner.next();
+
+
+        customerController.createCustomer(customerName);
     }
 }
