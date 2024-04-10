@@ -37,7 +37,7 @@ public class BankView {
                     createAccount(scanner);
                     break;
                 case 3:
-                    // 입금 기능
+                    deposit(scanner);
                     break;
                 case 4:
                     withdraw(scanner);
@@ -86,6 +86,23 @@ public class BankView {
         System.out.print("10자리의 계좌 번호를 숫자만 입력하세요: ");
         String accountNumber = scanner.next();
 
-        bankController.withdraw(customerName,accountNumber);
+        System.out.print("출금할 금액을 입력하세요: ");
+        double accountAmount = Double.parseDouble(scanner.next());
+
+        bankController.withdraw(customerName,accountNumber,accountAmount);
+    }
+
+    private void deposit(Scanner scanner){
+        System.out.print("고객 이름을 입력하세요: ");
+        String customerName = scanner.next();
+
+        System.out.print("10자리의 계좌 번호를 숫자만 입력하세요: ");
+        String accountNumber = scanner.next();
+
+        System.out.print("입금할 금액을 입력하세요: ");
+        double accountAmount = Double.parseDouble(scanner.next());
+
+
+        bankController.deposit(customerName,accountNumber,accountAmount);
     }
 }

@@ -17,8 +17,9 @@ public class Account extends Bank{
     }
 
     //입금
-    public void deposit(double amount) {
+    public boolean deposit(double amount) {
         balance += amount;
+        return true;
     }
 
     //출금
@@ -30,12 +31,6 @@ public class Account extends Bank{
         return false;
     }
 
-    //이체
-    public void transfer(Account recipient, double amount) {
-        if (withdraw(amount)) {
-            recipient.deposit(amount);
-        }
-    }
 
     //비밀번호 인증
     public boolean authenticate(String password) {
