@@ -33,6 +33,6 @@
 
 ### 브랜치 명 예시
 
-`ex) seminar/#주차`
+ex) `seminar/#주차`  `homework/#이슈번호`
 
 <br>
