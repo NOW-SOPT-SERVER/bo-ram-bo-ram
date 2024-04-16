@@ -24,7 +24,8 @@
 
 - [main] : 최종
 - [seminar] : 세미나코드
-- [homework] : 과제
+- [homework] : 실습과제
+- [clone-coding] : 클론코딩 과제
 - [fix] : 에러 수정, 버그 수정
 - [docs] : README, 문서
 - [refactor] : 코드 리펙토링 (기능 변경 없이 코드만 수정할 때)
@@ -33,6 +34,6 @@
 
 ### 브랜치 명 예시
 
-ex) `seminar/#주차`  `homework/#이슈번호`
+ex) `seminar/#주차`  `homework/#이슈번호`   `clone-coding/#이슈번호`
 
 <br>
