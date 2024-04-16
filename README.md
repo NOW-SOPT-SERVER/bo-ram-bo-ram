@@ -34,6 +34,6 @@
 
 ### 브랜치 명 예시
 
-ex) `seminar/#주차`  `homework/#이슈번호`   `clone-coding/#이슈번호`
+ex) `seminar/#주차`  `homework/#주차`   `clone-coding/#주차`
 
 <br>
