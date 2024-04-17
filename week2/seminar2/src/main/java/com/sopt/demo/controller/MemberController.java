@@ -1,5 +1,6 @@
 package com.sopt.demo.controller;
 
+import com.sopt.demo.common.ApiResponse;
 import com.sopt.demo.service.MemberQueryService;
 import com.sopt.demo.service.MemberCommandService;
 import com.sopt.demo.service.dto.MemberCreateDto;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
 import java.util.List;
+import static com.sopt.demo.common.SuccessType.GET_MEMBER_LIST_SUCCESS;
 
 @RestController
 @RequiredArgsConstructor
@@ -33,7 +35,7 @@ public class MemberController {
         return ResponseEntity.noContent().build();
     }
     @GetMapping("/all")
-    public ResponseEntity<List<MemberFindDto>> getAllMembers() {
-        return ResponseEntity.ok(memberQueryService.findAllMembers());
+    public ApiResponse<List<MemberFindDto>> getAllMembers() {
+        return ApiResponse.success(GET_MEMBER_LIST_SUCCESS,memberQueryService.findAllMembers());
     }
 }
