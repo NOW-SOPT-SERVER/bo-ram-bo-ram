@@ -1,15 +1,16 @@
 package sopt.cloneCoding.carrot.domain;
 
 import jakarta.persistence.*;
-import lombok.AccessLevel;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import sopt.cloneCoding.carrot.domain.common.BaseEntity;
+import sopt.cloneCoding.carrot.service.dto.request.ProductCreateRequestDto;
 
 @Table(name = "products")
 @Entity
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
+@Builder
 public class Product extends BaseEntity {
 
     @Id
@@ -24,9 +25,10 @@ public class Product extends BaseEntity {
     @Column(nullable = false)
     private String title;
 
-    @Column(name = "transaction_Method", nullable = false)
+    @Enumerated(EnumType.STRING)
     private TransactionMethod method;
 
+    @Column(columnDefinition ="BOOLEAN DEFAULT false")
     private Boolean isSuggested;
 
     @Column(nullable = false)
@@ -34,4 +36,18 @@ public class Product extends BaseEntity {
 
     @Column(nullable = false)
     private String description;
+
+    @Enumerated(EnumType.STRING)
+    private SaleStatus saleStatus;
+
+    @Builder
+    public Product(Member member, ProductCreateRequestDto product){
+        this.member = member;
+        this.title = getTitle();
+        this.method=getMethod();
+        this.isSuggested = getIsSuggested();
+        this.price = getPrice();
+        this.description=getDescription();
+        this.saleStatus=getSaleStatus();
+    }
 }

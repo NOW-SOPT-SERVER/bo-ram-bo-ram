@@ -26,7 +26,11 @@ public class ProductCommandService {
 
         Product product = Product.builder()
                 .member(member)
-                .product(requestDto)
+                .title(requestDto.title())
+                .method(requestDto.method())
+                .isSuggested(requestDto.isSuggested())
+                .price(requestDto.price())
+                .description(requestDto.description())
                 .build();
 
         product = productRepository.save(product);

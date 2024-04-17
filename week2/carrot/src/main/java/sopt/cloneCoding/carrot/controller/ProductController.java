@@ -21,7 +21,6 @@ public class ProductController {
 
     @PostMapping("/{memberId}/product")
     public ApiResponse<ProductCreateResponseDto> createProduct(@PathVariable("memberId") Long memberId, @Valid @RequestBody ProductCreateRequestDto productCreateDto){
-
         return ApiResponse.success(MEMBER_CREATE_SUCCESS, productCommandService.createProduct(memberId, productCreateDto));
     }
 }

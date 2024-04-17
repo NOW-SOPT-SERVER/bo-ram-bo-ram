@@ -21,6 +21,6 @@ public class MemberController {
 
     @PostMapping
     public ApiResponse<MemberCreateResponseDto> createMember(@Valid @RequestBody MemberCreateRequestDto memberCreateDto){
-        return ApiResponse.success(MEMBER_CREATE_SUCCESS, memberCommandService.createMember(memberCreateDto) );
+        return ApiResponse.success(MEMBER_CREATE_SUCCESS, memberCommandService.createMember(memberCreateDto));
     }
 }
