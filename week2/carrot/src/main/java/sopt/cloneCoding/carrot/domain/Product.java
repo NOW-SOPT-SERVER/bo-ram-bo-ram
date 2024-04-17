@@ -15,7 +15,7 @@ public class Product extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "item_id")
+    @Column(name = "product_id")
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -43,10 +43,10 @@ public class Product extends BaseEntity {
     @Builder
     public Product(Member member, ProductCreateRequestDto product){
         this.member = member;
-        this.title = getTitle();
-        this.method=getMethod();
-        this.isSuggested = getIsSuggested();
-        this.price = getPrice();
-        this.description=getDescription();
+        this.title = product.title();
+        this.method=product.method();
+        this.isSuggested = product.isSuggested();
+        this.price = product.price();
+        this.description=product.description();
     }
 }
