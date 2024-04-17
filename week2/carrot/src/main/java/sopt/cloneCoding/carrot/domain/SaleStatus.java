@@ -1,7 +1,7 @@
 package sopt.cloneCoding.carrot.domain;
 
 public enum SaleStatus {
-    SALE,
-    NOT_SALE,
-    PENDING
+    SALE,   //판매중
+    DONE,   //판매완료
+    PENDING //거래중
 }

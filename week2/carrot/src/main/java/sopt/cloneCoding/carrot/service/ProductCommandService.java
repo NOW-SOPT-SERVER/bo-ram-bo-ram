@@ -7,6 +7,7 @@ import org.springframework.transaction.annotation.Transactional;
 import sopt.cloneCoding.carrot.common.ErrorType;
 import sopt.cloneCoding.carrot.domain.Member;
 import sopt.cloneCoding.carrot.domain.Product;
+import sopt.cloneCoding.carrot.domain.SaleStatus;
 import sopt.cloneCoding.carrot.domain.common.NotFoundException;
 import sopt.cloneCoding.carrot.repository.MemberRepository;
 import sopt.cloneCoding.carrot.repository.ProductRepository;
@@ -31,6 +32,7 @@ public class ProductCommandService {
                 .isSuggested(requestDto.isSuggested())
                 .price(requestDto.price())
                 .description(requestDto.description())
+                .saleStatus(SaleStatus.SALE)    //판매중인 상태 default로 설정
                 .build();
 
         product = productRepository.save(product);

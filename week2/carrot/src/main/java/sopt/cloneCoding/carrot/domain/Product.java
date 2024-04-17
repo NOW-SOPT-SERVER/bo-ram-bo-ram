@@ -48,6 +48,5 @@ public class Product extends BaseEntity {
         this.isSuggested = getIsSuggested();
         this.price = getPrice();
         this.description=getDescription();
-        this.saleStatus=getSaleStatus();
     }
 }
