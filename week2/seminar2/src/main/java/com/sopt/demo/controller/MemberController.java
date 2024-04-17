@@ -1,5 +1,6 @@
 package com.sopt.demo.controller;
 
+import com.sopt.demo.service.MemberQueryService;
 import com.sopt.demo.service.MemberService;
 import com.sopt.demo.service.dto.MemberCreateDto;
 import com.sopt.demo.service.dto.MemberFindDto;
@@ -15,6 +16,7 @@ import java.util.List;
 @RequestMapping("/api/v1/member")
 public class MemberController {
     private final MemberService memberService;
+    private final MemberQueryService memberQueryService;
     @PostMapping
     public ResponseEntity createMember(@RequestBody MemberCreateDto memberCreate) {
         return ResponseEntity.created(URI.create(memberService.createMember(memberCreate))).build();
@@ -22,7 +24,7 @@ public class MemberController {
 
     @GetMapping("/{memberId}")
     public ResponseEntity<MemberFindDto> findMemberById(@PathVariable Long memberId){
-        return  ResponseEntity.ok(memberService.findMemberById(memberId));
+        return  ResponseEntity.ok(memberQueryService.findMemberById(memberId));
     }
     
     @DeleteMapping("/{memberId}")
@@ -32,6 +34,6 @@ public class MemberController {
     }
     @GetMapping("/all")
     public ResponseEntity<List<MemberFindDto>> getAllMembers() {
-        return ResponseEntity.ok(memberService.findAllMembers());
+        return ResponseEntity.ok(memberQueryService.findAllMembers());
     }
 }

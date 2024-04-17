@@ -15,11 +15,11 @@ import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
+@Transactional
 public class MemberService {
 
     private final MemberRepository memberRepository;
 
-    @Transactional
     public String createMember(
             MemberCreateDto memberCreateDto
     ) {
@@ -28,23 +28,9 @@ public class MemberService {
         return member.getId().toString();
     }
 
-    public MemberFindDto findMemberById(Long memberId) {
-        return MemberFindDto.of(memberRepository.findById(memberId).orElseThrow(
-                () -> new EntityNotFoundException("ID에 해당하는 사용자가 존재하지 않습니다.")
-        ));
-    }
-
-    @Transactional
     public void deleteMemberById(Long memberId) {
         Member member = memberRepository.findById(memberId)
                 .orElseThrow(() -> new EntityNotFoundException("ID에 해당하는 사용자가 존재하지 않습니다."));
         memberRepository.delete(member);
-    }
-
-    @Transactional
-    public List<MemberFindDto> findAllMembers() {
-        List<Member> memberList = memberRepository.findAll();
-        return memberList.stream().map(MemberFindDto::of)
-                .collect(Collectors.toList());
     }
 }
