@@ -2,7 +2,7 @@ package com.sopt.demo.settirngs.controller;
 
 import com.sopt.demo.service.dto.MemberCreateDto;
 import com.sopt.demo.respository.MemberRepository;
-import com.sopt.demo.service.MemberService;
+import com.sopt.demo.service.MemberCommandService;
 import com.sopt.demo.settirngs.settirngs.ApiTest;
 import io.restassured.RestAssured;
 import org.assertj.core.api.Assertions;
@@ -19,7 +19,7 @@ import static com.sopt.demo.domain.Part.SERVER;
 public class MemberControllerTest extends ApiTest {
 
     @Autowired
-    private MemberService memberService;
+    private MemberCommandService memberCommandService;
 
     @Autowired
     private MemberRepository memberRepository;
