@@ -6,7 +6,6 @@ import org.springframework.transaction.annotation.Transactional;
 import sopt.cloneCoding.carrot.common.ErrorType;
 import sopt.cloneCoding.carrot.domain.Member;
 import sopt.cloneCoding.carrot.domain.Product;
-import sopt.cloneCoding.carrot.domain.SaleStatus;
 import sopt.cloneCoding.carrot.domain.common.NotFoundException;
 import sopt.cloneCoding.carrot.repository.MemberRepository;
 import sopt.cloneCoding.carrot.repository.ProductRepository;
@@ -24,15 +23,7 @@ public class ProductCommandService {
         Member member = memberRepository.findById(memberId)
                 .orElseThrow(() -> new NotFoundException(ErrorType.NOT_FOUND_MEMBER.getHttpStatus(),ErrorType.NOT_FOUND_MEMBER.getMessage()));
 
-        Product product = Product.builder()
-                .member(member)
-                .title(requestDto.title())
-                .method(requestDto.method())
-                .isSuggested(requestDto.isSuggested())
-                .price(requestDto.price())
-                .description(requestDto.description())
-                .saleStatus(SaleStatus.SALE)    //판매중인 상태 default로 설정
-                .build();
+        Product product = Product.createProduct(member,requestDto);
 
         product = productRepository.save(product);
 
