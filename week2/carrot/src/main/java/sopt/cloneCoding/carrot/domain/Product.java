@@ -65,17 +65,6 @@ public class Product extends BaseEntity {
             .saleStatus(SaleStatus.SALE)
             .build();
     }
-//    @Builder
-//    public Product(Member member, String title, TransactionMethod method,
-//                    Boolean isSuggested, int price, String description){
-//        this.member = member;
-//        this.title = title;
-//        this.method= method;
-//        this.isSuggested = isSuggested;
-//        this.price = price;
-//        this.description= description;
-//        this.saleStatus = SaleStatus.SALE;// 상태 판매중으로 default 설정
-//    }
 //
 //    public static Product createProduct(
 //            Member member,
