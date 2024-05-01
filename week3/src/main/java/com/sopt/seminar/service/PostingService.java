@@ -8,8 +8,12 @@ import com.sopt.seminar.respository.BlogRepository;
 import com.sopt.seminar.respository.MemberRepository;
 import com.sopt.seminar.respository.PostingRepository;
 import com.sopt.seminar.service.dto.PostingCreateRequest;
+import com.sopt.seminar.service.dto.PostingGetAllDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -28,5 +32,11 @@ public class PostingService {
         Posting posting = postingRepository.save(Posting.createPosting(blog, requestDto.title(),requestDto.content()));
         postingRepository.save(posting);
         return posting.toString();
+    }
+
+    public List<PostingGetAllDto> getAllPostings(){
+        List<Posting> postingList = postingRepository.findAll();
+        return postingList.stream().map(PostingGetAllDto::of)
+                .collect(Collectors.toList());
     }
 }
