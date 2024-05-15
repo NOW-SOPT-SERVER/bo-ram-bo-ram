@@ -13,6 +13,7 @@ import java.net.URI;
 @RequiredArgsConstructor
 @RequestMapping("/api/v1/member")
 public class MemberController {
+
     private final MemberService memberService;
     @PostMapping
     public ResponseEntity createMember(@RequestBody MemberCreateDto memberCreate) {
