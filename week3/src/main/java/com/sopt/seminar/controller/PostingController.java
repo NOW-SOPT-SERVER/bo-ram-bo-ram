@@ -25,11 +25,12 @@ public class PostingController {
 
     @PostMapping
     public ResponseEntity<SuccessStatusResponse> createPosting(
-            @RequestHeader(name = "memberId")  Long memberId,
+            @RequestHeader(name = "memberId") Long memberId,
             @Valid @RequestBody PostingCreateRequest postingCreateRequest
-    ){        return ResponseEntity.status(HttpStatus.CREATED)
-            .header("postingId", postingService.createPosting(memberId, postingCreateRequest))
-            .body(SuccessStatusResponse.of(SuccessMessage.POSTING_CREATE_SUCCESS));
+    ) {
+        return ResponseEntity.status(HttpStatus.CREATED)
+                .header("postingId", postingService.createPosting(memberId, postingCreateRequest))
+                .body(SuccessStatusResponse.of(SuccessMessage.POSTING_CREATE_SUCCESS));
     }
 
     @GetMapping("/all")
