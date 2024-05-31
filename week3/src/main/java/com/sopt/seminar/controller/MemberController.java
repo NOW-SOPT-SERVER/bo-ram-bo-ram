@@ -22,11 +22,6 @@ public class MemberController {
 
     private final MemberService memberService;
 
-//    @PostMapping
-//    public ResponseEntity createMember(@RequestBody MemberCreateDto memberCreate) {
-//        return ResponseEntity.created(URI.create(memberService.createMember(memberCreate))).build();
-//    }
-
     @GetMapping("/{memberId}")
     public ResponseEntity<MemberFindDto> findMemberById(@PathVariable Long memberId){
         return  ResponseEntity.ok(memberService.findMemberById(memberId));
