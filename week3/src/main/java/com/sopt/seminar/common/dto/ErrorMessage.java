@@ -15,6 +15,9 @@ public enum ErrorMessage {
     //400
     POSTING_TITLE_LONG(HttpStatus.BAD_REQUEST.value(), "블로그 제목이 너무 깁니다."),
     POSTING_CONTENT_LONG(HttpStatus.BAD_REQUEST.value(), "블로그 내용이 너무 깁니다."),
+
+    //401
+    JWT_UNAUTHORIZED_EXCEPTION(HttpStatus.UNAUTHORIZED.value(), "사용자의 로그인 검증을 실패했습니다."),
     ;
     private final int status;
     private final String message;
