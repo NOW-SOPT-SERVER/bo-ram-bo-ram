@@ -1,7 +1,8 @@
 package com.sopt.seminar.service;
 
-import com.sopt.seminar.config.auth.UserAuthentication;
 import com.sopt.seminar.common.dto.ErrorMessage;
+import com.sopt.seminar.config.auth.UserAuthentication;
+import com.sopt.seminar.config.auth.redis.Service.TokenService;
 import com.sopt.seminar.config.jwt.JwtTokenProvider;
 import com.sopt.seminar.domain.Member;
 import com.sopt.seminar.exception.NotFoundException;
@@ -21,15 +22,7 @@ public class MemberService {
 
     private final MemberRepository memberRepository;
     private final JwtTokenProvider jwtTokenProvider;
-
-    //    @Transactional
-//    public String createMember(
-//            MemberCreateDto memberCreateDto
-//    ) {
-//        Member member = Member.create(memberCreateDto.name(), memberCreateDto.part(), memberCreateDto.age());
-//        memberRepository.save(member);
-//        return member.getId().toString();
-//    }
+    private final TokenService tokenService;
 
     @Transactional
     public UserJoinResponse createMember(
@@ -42,7 +35,11 @@ public class MemberService {
         String accessToken = jwtTokenProvider.issueAccessToken(
                 UserAuthentication.createUserAuthentication(memberId)
         );
-        return UserJoinResponse.of(accessToken, memberId.toString());
+        String refreshToken = jwtTokenProvider.issueRefreshToken(
+                UserAuthentication.createUserAuthentication(memberId)
+        );
+        tokenService.saveRefreshToken(memberId, refreshToken);
+        return UserJoinResponse.of(accessToken,refreshToken, memberId.toString());
     }
 
     public MemberFindDto findMemberById(Long memberId) {
