@@ -18,6 +18,9 @@ public enum ErrorMessage {
 
     //401
     JWT_UNAUTHORIZED_EXCEPTION(HttpStatus.UNAUTHORIZED.value(), "사용자의 로그인 검증을 실패했습니다."),
+
+    //404
+    REFRESH_TOKEN_NOT_FOUND(HttpStatus.NOT_FOUND.value(),"refresh 토큰이 존재하지 않습니다."),
     ;
     private final int status;
     private final String message;

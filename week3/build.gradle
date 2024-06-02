@@ -28,7 +28,6 @@ dependencies {
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 
 	runtimeOnly 'com.h2database:h2'
-	//	implementation group: 'org.postgresql',name:'postgresql',version:'42.7.3'
 
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	testImplementation 'io.rest-assured:rest-assured'
@@ -46,6 +45,9 @@ dependencies {
 	//Multipart file
 	implementation("software.amazon.awssdk:bom:2.21.0")
 	implementation("software.amazon.awssdk:s3:2.21.0")
+
+	//redis
+	implementation 'org.springframework.boot:spring-boot-starter-data-redis:2.3.1.RELEASE'
 }
 
 tasks.named('test') {
